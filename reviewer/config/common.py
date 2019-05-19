@@ -24,6 +24,7 @@ class Common(Configuration):
 
         # Your apps
         'reviewer.users',
+        'reviewer.reviews',
 
     )
 
@@ -40,7 +41,7 @@ class Common(Configuration):
 
     ALLOWED_HOSTS = ["*"]
     ROOT_URLCONF = 'reviewer.urls'
-    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+    SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', "abcdefg")  #
     WSGI_APPLICATION = 'reviewer.wsgi.application'
 
     # Email
@@ -53,8 +54,9 @@ class Common(Configuration):
     # Postgres
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgres://postgres:@postgres:5432/postgres',
-            conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
+            default='sqlite:///dbsqlite',
+            # default='postgres://postgres:@postgres:5432/postgres',
+            # conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
         )
     }
 
