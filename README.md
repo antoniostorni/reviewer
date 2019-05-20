@@ -45,7 +45,7 @@ Create DB
 python manage.py migrate
 ```
 
-Create super user to use admin in http://localhost:8000/admin/
+Create super user to use the admin interface in http://localhost:8000/admin/
 
 ```bash
 python manage.py createsuperuser
