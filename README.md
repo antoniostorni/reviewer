@@ -1,6 +1,5 @@
 # reviewer
 
-[![Build Status](https://travis-ci.org/antoniostorni/reviewer.svg?branch=master)](https://travis-ci.org/antoniostorni/reviewer)
 [![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
 
 A simple API that allows users to post and retrieve their reviews.. Check out the project's [documentation](http://antoniostorni.github.io/reviewer/).
@@ -8,10 +7,8 @@ A simple API that allows users to post and retrieve their reviews.. Check out th
 # Prerequisites
 
 - [Docker](https://docs.docker.com/docker-for-mac/install/)  
-- [Travis CLI](http://blog.travis-ci.com/2013-01-14-new-client/)
-- [Heroku Toolbelt](https://toolbelt.heroku.com/)
 
-# Local Development
+# Local Development with Docker
 
 Start the dev server for local development:
 ```bash
@@ -24,52 +21,35 @@ Run a command inside the docker container:
 docker-compose run --rm web [command]
 ```
 
-# Continuous Deployment
 
-Deployment is automated via Travis. When builds pass on the master or qa branch, Travis will deploy that branch to Heroku. Follow these steps to enable this feature.
+# Local Development with virtualenv
 
-Initialize the production server:
 
-```
-heroku create reviewer-prod --remote prod && \
-    heroku addons:create newrelic:wayne --app reviewer-prod && \
-    heroku addons:create heroku-postgresql:hobby-dev --app reviewer-prod && \
-    heroku config:set DJANGO_SECRET_KEY=`openssl rand -base64 32` \
-        DJANGO_AWS_ACCESS_KEY_ID="Add your id" \
-        DJANGO_AWS_SECRET_ACCESS_KEY="Add your key" \
-        DJANGO_AWS_STORAGE_BUCKET_NAME="reviewer-prod" \
-        DJANGO_CONFIGURATION="Production" \
-        DJANGO_SETTINGS_MODULE="reviewer.config" \
-        --app reviewer-prod
+Install dependencies
+```bash
+pip install -r requirements.txt
 ```
 
-Initialize the qa server:
 
-```
-heroku create reviewer-qa --remote qa && \
-    heroku addons:create newrelic:wayne --app reviewer-qa && \
-    heroku addons:create heroku-postgresql:hobby-dev --app reviewer-qa && \
-    heroku config:set DJANGO_SECRET_KEY=`openssl rand -base64 32` \
-        DJANGO_AWS_ACCESS_KEY_ID="Add your id" \
-        DJANGO_AWS_SECRET_ACCESS_KEY="Add your key" \
-        DJANGO_AWS_STORAGE_BUCKET_NAME="reviewer-qa" \
-        DJANGO_CONFIGURATION="Production" \
-        DJANGO_SETTINGS_MODULE="reviewer.config" \
-        --app reviewer-qa
-```
-
-Securely add your Heroku credentials to Travis so that it can automatically deploy your changes:
+Create DB
 
 ```bash
-travis encrypt HEROKU_AUTH_TOKEN="$(heroku auth:token)" --add
+python manage.py migrate
 ```
 
-Commit your changes and push to master and qa to trigger your first deploys:
+Create super user to use admin
 
 ```bash
-git commit -a -m "ci(travis): add Heroku credentials" && \
-git push origin master:qa && \
-git push origin master
+python manage.py createsuperuser
 ```
 
-You're now ready to continuously ship! ✨ 💅 🛳
+
+Run development server
+```bash
+python manage.py runserver
+```
+
+Run tests
+```bash
+python manage.py test
+```
