@@ -15,7 +15,7 @@ class TestReviewModelTestCase(APITestCase):
 
     def test_review_str(self):
         """
-        Test that the user can only list own reviews
+        Test the str method for model review
         """
         eq_(self.review.__str__(), f'{self.review.reviewer} - {self.review.company}')
 
@@ -29,6 +29,6 @@ class TestCompanyModelTestCase(APITestCase):
 
     def test_company_str(self):
         """
-        Test that the user can only list own reviews
+        Test the str method for model company
         """
         eq_(self.company.__str__(), self.company.name)
