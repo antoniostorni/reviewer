@@ -6,8 +6,12 @@ A simple API that allows users to post and retrieve their reviews.. Check out th
 
 # Prerequisites
 
-- [Docker](https://docs.docker.com/docker-for-mac/install/)  
+- Docker
 
+or
+ 
+- Python 3 (recommended with virtualenv)
+  
 # Local Development with Docker
 
 Start the dev server for local development:
