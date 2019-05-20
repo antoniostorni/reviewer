@@ -51,7 +51,7 @@ class Common(Configuration):
         ('Author', 'antonio.storni@gmail.com'),
     )
 
-    # Postgres
+    # DB
     DATABASES = {
         'default': dj_database_url.config(
             default='sqlite:///dbsqlite',

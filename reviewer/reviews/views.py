@@ -21,7 +21,7 @@ class ReviewView(generics.ListAPIView,
         for the currently authenticated user.
         """
         user = self.request.user
-        return Review.objects.filter(reviewer=user)
+        return Review.objects.filter(reviewer=user).order_by('date')
 
     def get_serializer_class(self):
         if self.action == "create":
