@@ -27,7 +27,7 @@ class TestCompanyModelTestCase(APITestCase):
     def setUp(self):
         self.company = CompanyFactory()
 
-    def test_review_str(self):
+    def test_company_str(self):
         """
         Test that the user can only list own reviews
         """
