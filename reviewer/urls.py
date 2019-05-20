@@ -9,6 +9,7 @@ from .users.views import (UserViewSet,
                           UserCreateViewSet,
                           )
 from .reviews.views import ReviewView
+from rest_framework.documentation import include_docs_urls
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -20,7 +21,7 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-
+    path('docs/', include_docs_urls(title='Reviews API')),
     # the 'api-root' from django rest-frameworks default router
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter
     re_path(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),

@@ -1,8 +1,12 @@
-# reviewer
+# Reviewer
 
 [![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
 
-A simple API that allows users to post and retrieve their reviews.. Check out the project's [documentation](http://antoniostorni.github.io/reviewer/).
+A simple API that allows users to post and retrieve their reviews.
+
+Check out the API documentation in
+
+http://localhost:8000/docs/
 
 # Prerequisites
 
@@ -41,7 +45,7 @@ Create DB
 python manage.py migrate
 ```
 
-Create super user to use admin
+Create super user to use admin in http://localhost:8000/admin/
 
 ```bash
 python manage.py createsuperuser

@@ -14,11 +14,3 @@ services:
       - ./:/code
     ports:
       - "8000:8000"
-  documentation:
-    restart: always
-    build: ./
-    command: "mkdocs serve"
-    volumes:
-      - ./:/code
-    ports:
-      - "8001:8001"
