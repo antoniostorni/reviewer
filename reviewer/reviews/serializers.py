@@ -4,6 +4,12 @@ from .models import (Review,
                      Company,
                      )
 from reviewer.users.serializers import UserSerializer
+from django.contrib.auth import get_user_model
+from django.db import models
+import uuid
+from django.core.validators import (MinValueValidator,
+                                    MaxValueValidator,
+                                    )
 from .fields import CurrentUserIP
 
 
@@ -30,16 +36,8 @@ class ReviewCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ('title', 'company', 'summary', 'rating', 'reviewer', 'ip_address')
-from django.db import models
-import uuid
-from django.core.validators import (MinValueValidator,
-                                    MaxValueValidator,
-                                    )
-from django.contrib.auth import get_user_model
 
-
-# Create your models here.
-
+        
 class Company(models.Model):
     """
     Company model
